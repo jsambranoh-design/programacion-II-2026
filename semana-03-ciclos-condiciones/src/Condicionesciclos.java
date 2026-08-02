@@ -5,7 +5,12 @@ class Condicionesciclos {
         System.out.print("Estudiante; Juan Otoniel Sambrano Hernandez.\nCarne: 9941-25-14918.\nSemana 3 - Condiciones y cliclos.\n");
         int opcion;
         do {
-            System.out.print("\n========= DESAFÍOS LÓGICOS =========\n1. Generar una secuencia \n2. Realizar un conteo regresivo \n3. Analizar números \n4. Dibujar una pirámide\n5. Validar palabra secreta\n6. Salir ");
+            System.out.print("\n========= DESAFÍOS LÓGICOS =========\n1" +
+                    ". Generar una secuencia \n" +
+                    "2. Realizar un conteo regresivo \n" +
+                    "3. Analizar números \n" +
+                    "4. Dibujar una pirámide\n" +
+                    "5. Validar palabra secreta\n6. Salir ");
             System.out.print("\nSeleccione una opcion; ");
             opcion = entrada.nextInt();
             switch (opcion) {
