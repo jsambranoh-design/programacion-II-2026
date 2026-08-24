@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana04-TareaControlParqueo/semana04-TareaControlParqueo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana05-POO/semana05-POO.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana05-POO/src/Envio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana05-POO/src/EnvioInternacional.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana05-POO/src/EnvioNacional.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana05-POO/src/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/semana05-POO/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
