@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/semana05-POO/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/evidencia/ejecucion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Circulo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Figura.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Rectangulo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Triangulo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semana-03-ciclos-condiciones/evidencias/~$IDENCIAS.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +50,12 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="sortKey" value="BY_TIME_ASCENDING" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Condicionesciclos.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.controlParqueo.executor": "Run",
     "Application.main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -57,7 +66,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Juan Sambrano/Documents/progra 2/programacion-II-2026/semana-02-variables-operadores/evidencias",
+    "last_opened_file_path": "C:/Users/Juan Sambrano/Documents/progra 2/programacion-II-2026/TareaV-POO-Final/evidencia",
     "node.js.detected.package.jshint": "true",
     "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
@@ -68,6 +77,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Juan Sambrano\Documents\progra 2\programacion-II-2026\TareaV-POO-Final\evidencia" />
+      <recent name="C:\Users\Juan Sambrano\Documents\progra 2\programacion-II-2026\semana05-POO\evidencias" />
       <recent name="C:\Users\Juan Sambrano\Documents\progra 2\programacion-II-2026\semana-02-variables-operadores\evidencias" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
