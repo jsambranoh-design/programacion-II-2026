@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/evidencia/ejecucion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Circulo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Figura.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Rectangulo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/src/Triangulo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TareaV-POO-Final/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/semana-03-ciclos-condiciones/evidencias/~$IDENCIAS.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
