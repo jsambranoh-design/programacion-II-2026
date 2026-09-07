@@ -1,2 +1,4 @@
-Juan Otoniel Sambrano Hernandez
-carnet 9941-25-14918
+Integrantes del equipo:
+1.Juan Otoniel Sambrano Hernandez
+
+Colección asignada: C Hashmap
