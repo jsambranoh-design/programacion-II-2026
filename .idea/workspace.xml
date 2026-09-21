@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Semana-08-collection/src/Ave.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semana-08-collection/src/Gato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semana-08-collection/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semana-08-collection/src/Mascota.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semana-08-collection/src/Perro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana-08/src/CasoC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana-08/src/MainArrayList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana-08/src/MainHashMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/semana-08/src/MainHashset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parcial_II/src/automovil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parcial_II/src/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parcial_II/src/motocicleta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parcial_II/src/vehiculo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -54,33 +49,33 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortKey" value="BY_TIME_ASCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CasoC.executor": "Run",
-    "Application.Condicionesciclos.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainArrayList.executor": "Run",
-    "Application.MainHashMap.executor": "Run",
-    "Application.MainHashset.executor": "Run",
-    "Application.controlParqueo.executor": "Run",
-    "Application.main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Juan Sambrano/Documents/progra 2/programacion-II-2026/colleccions/src",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CasoC.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Condicionesciclos.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainArrayList.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainHashMap.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainHashset.executor&quot;: &quot;Run&quot;,
+    &quot;Application.controlParqueo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Juan Sambrano/Documents/progra 2/programacion-II-2026/colleccions/src&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Juan Sambrano\Documents\progra 2\programacion-II-2026\colleccions\src" />
