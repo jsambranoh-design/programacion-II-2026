@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tarea-07-postgresql-inventario/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tarea-07-postgresql-inventario/database/01_creacion.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tarea-07-postgresql-inventario/database/02_datos_prueba.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tarea-07-postgresql-inventario/database/03_operaciones.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parcial_II/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Parcial_II/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parcial_II/database/estacionamiento.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Parcial_II/database/estacionamiento.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
