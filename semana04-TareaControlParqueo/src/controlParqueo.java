@@ -71,12 +71,10 @@ import java.util.Scanner;
 //Tiempo estacionado: 3 horas y 40 minutos Horas cobradas: 4
 //No se aceptará como reto una solución con valores fijos o que solamente funcione para el ejemplo proporcionado
 public class controlParqueo {
-    static Scanner entrada= new Scanner(System.in);
-    public static void main(String[] args){
-        int cantidadI=datos_iniciales();
-        System.out.print("Cantidad ingresada; " + cantidadI);
-        System.out.print("Los "+ cantidadI+ "vehiclos a ingresar son del mismo tipo?");
-
+    static Scanner entrada = new Scanner(System.in);
+    public static void main(String[] args) {
+        int cantidadVehiculos = datosIniciales();
+        registro(cantidadVehiculos);
     }
     //DATOS INICIALES-------------------------------
     public static int datos_iniciales(){
