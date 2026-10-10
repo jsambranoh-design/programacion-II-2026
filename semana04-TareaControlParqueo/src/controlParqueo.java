@@ -1,148 +1,159 @@
 import java.util.Scanner;
-//Desarrolla en Java un programa de consola que calcule el pago de varios vehículos que utilizan un parqueo.
-//El programa deberá procesar la cantidad de vehículos indicada por el usuario y, al finalizar, mostrar un resumen general de la jornada.
-//Tarifas
-//Tipo de vehículo	Tarifa por hora
-//Motocicleta	Q5.00
-//Automóvil	Q8.00
-//Pickup o camioneta	Q12.00
-//Si el vehículo permanece más de 8 horas, se aplica un descuento del 15 % sobre el pago del tiempo estacionado.
-//Si el conductor perdió el ticket, se agregan Q50.00 después de calcular cualquier descuento.
-//Requerimientos obligatorios
-//2. Registro de vehículos
-//Para cada vehículo solicita
-//Número de placa.
-//Tipo de vehículo:
-//1: motocicleta.
-//2: automóvil.
-//3: pickup o camioneta.
-//Cantidad de horas estacionadas.
-//Indicar si perdió el ticket: S o N.
-//Debes validar que:
-//El tipo de vehículo esté entre 1 y 3.
-//Las horas sean mayores que cero.
-//La respuesta del ticket sea únicamente S o N.
-//3. Cálculos
-//Para cada vehículo determina:
-//Tarifa por hora.
-//Subtotal por el tiempo estacionado.
-//Descuento, cuando corresponda.
-//Recargo por ticket perdido.
-//Total que debe pagar.
-//4. Resultado individual
-//Muestra un comprobante como el siguiente:
-//========== COMPROBANTE ========== Placa: P123ABC Tipo: Automóvil Horas estacionado: 10 Tarifa por hora: Q8.00 Subtotal: Q80.00 Descuento: Q12.00 Recargo por ticket perdido: Q50.00 TOTAL: Q118.00 =================================
-//5. Resumen de la jornada
-//Al terminar de procesar todos los vehículos, muestra:
-//Cantidad de motocicletas.
-//Cantidad de automóviles.
-//Cantidad de pickups o camionetas.
-//Cantidad de tickets perdidos.
-//Total de dinero recaudado.
-//Vehículo que realizó el pago más alto y su placa.
-//Uso obligatorio de métodos
-//El programa debe estar modularizado. No se permite desarrollar toda la solución dentro de main.
 
-//Temas que debe demostrar la solución
-//Variables y tipos de datos.
-//Operadores aritméticos, relacionales y lógicos.
-//Entrada de datos con Scanner.
-//Condiciones con if, else o switch.
-//Ciclo for para procesar los vehículos.
-//Ciclo while o do while para las validaciones.
-//Métodos void.
-//Métodos con return.
-//Parámetros y argumentos.
-//Métodos static.
-//Sobrecarga de métodos.
-//Acumuladores y contadores.
-//Reto opcional — Control exacto del tiempo +2 puntos adicionales
-//Modifica el programa para solicitar la hora y los minutos de entrada y salida.
-//Ejemplo
-//Hora de entrada: 22 Minuto de entrada: 30 Hora de salida: 2 Minuto de salida: 10
-//El sistema deberá:
-//Validar horas entre 0 y 23.
-//Validar minutos entre 0 y 59.
-//Calcular correctamente el tiempo aunque el vehículo salga al día siguiente.
-//Cobrar como una hora completa cualquier fracción de hora.
-//Mostrar el tiempo exacto y las horas cobradas.
-//Integrar esta funcionalidad con el resto del sistema.
-//Para el ejemplo anterior:
-//Tiempo estacionado: 3 horas y 40 minutos Horas cobradas: 4
-//No se aceptará como reto una solución con valores fijos o que solamente funcione para el ejemplo proporcionado
-public class controlParqueo {
+public class controlParqueo{
     static Scanner entrada = new Scanner(System.in);
-    public static void main(String[] args) {
-        int cantidadVehiculos = datosIniciales();
-        registro(cantidadVehiculos);
+    public static void main ( String[] args){
+        int cantidadVehiculos = datosInciales();
+        registro (cantidadVehiculos);
     }
-    //DATOS INICIALES-------------------------------
-    public static int datos_iniciales(){
-        System.out.print("Ingresee la cantidad de vehiculos; ");
+    public static int datosInciales() {
+        System.out.println("Ingrese la cantidad de vehiculos: ");
         int cantidadVehiculos = entrada.nextInt();
 
         while (cantidadVehiculos<=0){
-            System.out.print("Cantidad de vehiculos incorrecta\n Ingresar la cantidad de vehiculos nuevamente");
-            cantidadVehiculos=entrada.nextInt();
+            System.out.println("Cantidad ingresada no valida, \n ingrese una cantidad mayor a 0: ");
+            cantidadVehiculos= entrada.nextInt();
         }
+        entrada.nextLine();
         return cantidadVehiculos;
     }
-
-    //REGISTRO VEHICULOS---------------------------------
-    public static String registro(){
-        for (int i =1; i<=datos_iniciales();i++){
-            System.out.print("\nDatos del vehiculo # "+ i );
-            System.out.print("\nNumero de Placa: ");
-            String placa = entrada.nextLine();
-
-            System.out.print("\nSeleccione el tipo de vehiculo\n1: motocicleta.\n" + "//2: automóvil.\n" +  "//3: pickup o camioneta.: ");
-            int vehiculotype = entrada.nextInt();
-            switch (vehiculotype) {
-                case 1:
-                    System.out.print("Tipo de vehiculo: " + vehiculotype);
-                    break;
-
-                case 2:
-                    System.out.print("Tipo de vehiculo: " + vehiculotype);
-                    break;
-
-                case 3:
-                    System.out.print("Tipo de vehiculo: " + vehiculotype);
-                    break;
-
-                default:
-                    System.out.print("\n Opcion invalidad, ingrese nuevamente el tipo de vehiculo ");
-            }
-            System.out.print("Cantidad de horas estacionadas: ");
-            int parkTime = entrada.nextInt();
-            System.out.print("Ticket perdido(S/N): ");
-            String ticket= entrada.nextLine();
-            if ( ticket equalS){
-            }
+    public static String obtenerNombreVehiculo( int tipoVehiculo){
+        switch (tipoVehiculo){
+            case 1:
+                return "Motocicleta";
+            case 2:
+                return "Automovil";
+            default:
+                return "Pick up o Camioneta";
         }
     }
-//Para cada vehículo solicita
-//Número de placa.
-//Tipo de vehículo:
-//1: motocicleta.
-//2: automóvil.
-//3: pickup o camioneta.
-//Cantidad de horas estacionadas.
-//Indicar si perdió el ticket: S o N.
-//Debes validar que:
-//El tipo de vehículo esté entre 1 y 3.
-//Las horas sean mayores que cero.
-//La respuesta del ticket sea únicamente S o N.
+    public static double obtenerTarifa( int tipoVehiculo){
+        switch (tipoVehiculo){
+            case 1:
+                return 5.00;
+            case 2:
+                return 8.00;
+            default:
+                return 12.00;
+        }
+    }
+    public static double calcularDescuento(double subtotal, double horas){
+        if (horas>8){
+            return subtotal*0.15;
+        }
+        return 0;
+    }
+    public static double calcularPago(double horas, double tarifa){
+        return horas * tarifa;
+    }
+    public static double calcularPago(double horas, double tarifa, double recargo){
+        return horas * tarifa + recargo;
+    }
+    public static void mostrarComprobante( String placa, String nombreVehiculo, double horas, double tarifa, double subtotal, double descuento, double recargo, double total){
+        System.out.println("------------Comprobante------------\n" +
+                "Placa:"+ placa +"\n" + "Tipo: " + nombreVehiculo +"\n" +
+                "Horas estacionado: " + horas + "\n" );
+        System.out.printf("Tarifa por hora: Q%.2f%n", tarifa);
+        System.out.printf("Subtotal: Q%.2f%n", subtotal);
+        System.out.printf("Descuento: Q%.2f%n", descuento);
+        System.out.printf("Recargo por ticket perdido: Q%.2f%n", recargo);
+        System.out.printf("Total: Q%.2f%n", total);
+        System.out.println("\n--------------------------------");
+    }
+    public static void registro(int cantidadVehiculo){
+        int cantidadMotocicletas = 0;
+        int cantidadAutomoviles =0;
+        int cantidadPickups = 0;
+        int ticketsPerdidos = 0;
+        double  totalRecaudado = 0;
+        double pagoMasAlto = 0;
+        String placaPagoMasAlto = "";
+
+        for (int i = 1; i <=cantidadVehiculo; i++){
+            System.out.println("Datos del Vehiculo "+ i);
+            System.out.print("Numero de placa: ");
+            String placa = entrada.nextLine();
+            int tipoVehiculo;
+            do {
+                System.out.println("\nSeleccione el tipo de vehiculo:");
+                System.out.println("1. Motocicleta");
+                System.out.println("2. Automovil");
+                System.out.println("3. Pickup o camioneta");
+                System.out.print("Opcion: ");
+
+                tipoVehiculo = entrada.nextInt();
+                if (tipoVehiculo < 1 || tipoVehiculo > 3) {
+                    System.out.println("Opcion invalida.");
+                }
+            } while (tipoVehiculo < 1 || tipoVehiculo > 3);
+            double horas;
+            do {
+                System.out.print("Cantidad de horas estacionadas: ");
+                horas = entrada.nextDouble();
+
+                if (horas <= 0) {
+                    System.out.println("Las horas tiene que ser mayores que cero.");
+                }
+            } while (horas <= 0);
+            entrada.nextLine();
+
+            String ticket;
+            do {
+                System.out.print("Ticket perdido (S/N): ");
+                ticket = entrada.nextLine().toUpperCase();
+                if (!ticket.equals("S") && !ticket.equals("N")) {
+                    System.out.println("Respuesta invalida. Ingrese S o N.");
+                }
+
+            } while (!ticket.equals("S") && !ticket.equals("N"));
+
+            double tarifa = obtenerTarifa(tipoVehiculo);
+            String nombreVehiculo = obtenerNombreVehiculo(tipoVehiculo);
+            double subtotal = calcularPago(horas, tarifa);
+            double descuento = calcularDescuento(subtotal, horas);
+            double recargo = 0;
+
+            if (ticket.equals("S")) {
+                recargo = 50.00;
+            }
+            double total;
+            if (ticket.equals("S")) {
+                total = subtotal - descuento + recargo;
+            } else {
+                total = calcularPago(horas, tarifa) - descuento;
+            }
+
+            mostrarComprobante(placa, nombreVehiculo, horas, tarifa, subtotal, descuento, recargo, total
+            );
+
+            if (tipoVehiculo == 1) {
+                cantidadMotocicletas++;
+            } else if (tipoVehiculo == 2) {
+                cantidadAutomoviles++;
+            } else if (tipoVehiculo == 3) {
+                cantidadPickups++;
+            }
+
+            if (ticket.equals("S")) {
+                ticketsPerdidos++;
+            }
+            totalRecaudado += total;
+
+            if (total > pagoMasAlto) {
+                pagoMasAlto = total;
+                placaPagoMasAlto = placa;
+            }
+        }
+
+        System.out.println("\n------------- Resumen de la jornada ----------------");
+        System.out.println("Cantidad de motocicletas: " + cantidadMotocicletas);
+        System.out.println("Cantidad de automoviles: " + cantidadAutomoviles);
+        System.out.println("Cantidad de pickups o camionetas: " + cantidadPickups);
+        System.out.println("Cantidad de tickets perdidos: " + ticketsPerdidos);
+        System.out.printf("Total de dinero recaudado: Q%.2f%n", totalRecaudado);
+        System.out.printf("Pago mas alto: Q%.2f%n", pagoMasAlto);
+        System.out.println("Placa del pago mas alto: " + placaPagoMasAlto);
+        System.out.println("-----------------------------------------------------");
+    }
 
 }
-//Como mínimo, debe incluir:
-//public static double obtenerTarifa(int tipoVehiculo)
-//public static String obtenerNombreVehiculo(int tipoVehiculo)
-//public static double calcularDescuento(double subtotal, int horas)
-//public static void mostrarComprobante(...)
-//También debe incluir una sobrecarga real de calcularPago:
-//public static double calcularPago(int horas, double tarifa)
-//Calcula el pago cuando no se perdió el ticket
-//public static double calcularPago(int horas, double tarifa, double recargo)
-//Calcula el pago cuando existe un recargo por ticket perdido.
-//Los métodos deben tener el mismo nombre, pero distinta lista de parámetros. Cambiar solamente el tipo de retorno no es sobrecarga.
