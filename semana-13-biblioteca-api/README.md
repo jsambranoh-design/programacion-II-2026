@@ -67,3 +67,36 @@ Instrucciones para ejecutar la aplicación.
 
 Nombre y carné del estudiante.
 Juan Otoniel Sambrano Hernández 9941-25-14918
+
+## Interfaz web
+Dirección para acceder a la página. http://localhost:8080/
+Tecnologías utilizadas en la interfaz.
+HTML, CSS3, JavaScrip, Fetch API, Rping Boot, PostgreSQL y Intellij IDEA
+Funcionalidades disponibles.
+Consultar libros: muestra automáticamente todos los libros registrados al abrir la página.
+
+Registrar libros: permite ingresar código, título, autor, categoría, año de publicación, precio y disponibilidad.
+Eliminar libros: permite eliminar registros mediante un botón con confirmación previa.
+Validar formularios: comprueba que los campos obligatorios estén completos y que los valores numéricos sean válidos
+Mostrar mensajes: informa cuando una operación se realiza correctamente o presenta errores.
+Actualizar automáticamente: refleja los cambios después de registrar o eliminar libros, sin recargar manualmente la página.
+
+Endpoints consumidos.
+Get= /api/libros
+POST = /api/libros
+DELETE = /api/libros/(id)
+Instrucciones para ejecutar el sistema.
+
+
+5. Instrucciones para ejecutar el sistema
+Abrir el proyecto semana-13-biblioteca-api en IntelliJ IDEA.
+Verificar que PostgreSQL esté funcionando.
+Comprobar que exista la base de datos biblioteca_personal y su tabla libro.
+Configurar las credenciales locales de PostgreSQL en application.properties.
+Ejecutar la clase principal BibliotecaApiApplication.java.
+Esperar a que Spring Boot inicie correctamente en el puerto 8080.
+Abrir un navegador e ingresar a http://localhost:8080.
+Utilizar el formulario para registrar libros y la tabla para consultar o eliminar registros.
+
+Captura opcional de la página terminada.
+![img.png](img.png)

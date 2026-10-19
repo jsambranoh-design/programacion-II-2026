@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Biblioteca Personal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f2fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+
+        .titulo-app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .icono-anime {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+        }
+
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #59438c;
+        }
+
+        .panel {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button {
+            background: #7055a5;
+            color: white;
+            padding: 10px 15px;
+            b
+            order: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .eliminar {
+            background: #c44358;
+        }
+
+        .tabla {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        #mensaje {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <h1 class="titulo-app">
+        <img src="/img/mona.png" alt="Chica anime" class="icono-anime">
+        Mi Biblioteca Personal
+    </h1>
+
+    <section class="panel">
+        <h2>Registrar libro</h2>
+
+        <form id="formulario">
+
+            <input id="codigo" placeholder="Código"
+                   maxlength="20" required>
+
+            <input id="titulo" placeholder="Título"
+                   maxlength="120" required>
+
+            <input id="autor" placeholder="Autor"
+                   maxlength="100" required>
+
+            <input id="categoria" placeholder="Categoría"
+                   maxlength="50" required>
+
+            <input id="anio" type="number"
+                   placeholder="Año de publicación"
+                   min="1" step="1" required>
+
+            <input id="precio" type="number"
+                   placeholder="Precio"
+                   min="0.01" step="0.01" required>
+
+            <label>
+                <input id="disponible" type="checkbox" checked
+                       style="width:auto">
+                Disponible
+            </label>
+
+            <p>
+                <button type="submit">Guardar libro</button>
+            </p>
+        </form>
+
+        <p id="mensaje" role="status"></p>
+    </section>
+
+    <section class="panel">
+        <h2>Libros registrados</h2>
+
+        <div class="tabla">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoría</th>
+                    <th>Año</th>
+                    <th>Precio</th>
+                    <th>Disponible</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+
+                <tbody id="listaLibros"></tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    const API = "/api/libros";
+    const formulario = document.getElementById("formulario");
+    const mensaje = document.getElementById("mensaje");
+    const lista = document.getElementById("listaLibros");
+
+    function mostrarMensaje(texto, error = false) {
+        mensaje.textContent = texto;
+        mensaje.style.color = error ? "red" : "green";
+    }
+
+    async function cargarLibros() {
+        try {
+            const respuesta = await fetch(API);
+
+            if (!respuesta.ok) {
+                throw new Error("Error al consultar libros");
+            }
+
+            const libros = await respuesta.json();
+            lista.replaceChildren();
+
+            libros.forEach(libro => {
+                const fila = document.createElement("tr");
+
+                const valores = [
+                    libro.codigo,
+                    libro.titulo,
+                    libro.autor,
+                    libro.categoria,
+                    libro.anioPublicacion,
+                    libro.precio,
+                    libro.disponible ? "Sí" : "No"
+                ];
+
+                valores.forEach(valor => {
+                    const celda = document.createElement("td");
+                    celda.textContent = valor ?? "";
+                    fila.appendChild(celda);
+                });
+
+                const celdaAccion = document.createElement("td");
+                const boton = document.createElement("button");
+
+                boton.textContent = "Eliminar";
+                boton.className = "eliminar";
+                boton.onclick = () => eliminarLibro(libro.id);
+
+                celdaAccion.appendChild(boton);
+                fila.appendChild(celdaAccion);
+                lista.appendChild(fila);
+            });
+
+        } catch (error) {
+            mostrarMensaje("No fue posible cargar los libros.", true);
+        }
+    }
+
+    formulario.addEventListener("submit", async (evento) => {
+        evento.preventDefault();
+
+        const libro = {
+            codigo: document.getElementById("codigo").value,
+            titulo: document.getElementById("titulo").value,
+            autor: document.getElementById("autor").value,
+            categoria: document.getElementById("categoria").value,
+            anioPublicacion: Number(document.getElementById("anio").value),
+            precio: Number(document.getElementById("precio").value),
+            disponible: document.getElementById("disponible").checked
+        };
+
+        try {
+            const respuesta = await fetch(API, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(libro)
+            });
+
+            if (!respuesta.ok) {
+                throw new Error("Error al guardar");
+            }
+
+            formulario.reset();
+            mostrarMensaje("Libro registrado correctamente.");
+            await cargarLibros();
+
+        } catch (error) {
+            mostrarMensaje("No fue posible registrar el libro.", true);
+        }
+    });
+
+    async function eliminarLibro(id) {
+        if (!confirm("¿Desea eliminar el libro seleccionado?")) {
+            return;
+        }
+
+        try {
+            const respuesta = await fetch(`${API}/${id}`, {
+                method: "DELETE"
+            });
+
+            if (!respuesta.ok) {
+                throw new Error("Error al eliminar");
+            }
+
+            mostrarMensaje("Libro eliminado correctamente.");
+            await cargarLibros();
+
+        } catch (error) {
+            mostrarMensaje("No fue posible eliminar el libro.", true);
+        }
+    }
+
+    cargarLibros();
+</script>
+
+</body>
+</html>
