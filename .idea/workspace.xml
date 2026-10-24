@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/controller/CategoriaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/controller/GastoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/CategoriaRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/CategoriaResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/EstadoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/GastoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/GastoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/dto/TotalCategoriaResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/exception/RecursoNoEncontradoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/exception/ReglaNegocioException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/repository/CategoriaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/repository/GastoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/service/CategoriaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/java/com/estudiante/controlgastospersonales/service/GastoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +94,27 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Juan Sambrano\Documents\progra 2\programacion-II-2026\semana-02-variables-operadores" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ControlGastosPersonalesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="controlGastosPersonales" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.estudiante.controlgastospersonales.ControlGastosPersonalesApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.estudiante.controlgastospersonales.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ControlGastosPersonalesApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
