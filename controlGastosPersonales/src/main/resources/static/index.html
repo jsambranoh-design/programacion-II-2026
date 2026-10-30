@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos Personales</title>
+
+    <style>
+        :root {
+            --principal: #176b87;
+            --oscuro: #0d4c67;
+            --turquesa: #64ccc5;
+            --fondo: #f4f8fa;
+            --texto: #24343b;
+            --borde: #dce5e9;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            line-height: 1.5;
+        }
+
+        header {
+            padding: 36px 24px;
+            color: white;
+            background: linear-gradient(
+                    135deg,
+                    var(--oscuro),
+                    var(--principal),
+                    var(--turquesa)
+            );
+        }
+
+        header > div,
+        main {width: 95%;
+            margin: auto;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+        header p {
+            margin: 0;
+        }
+        main {
+            padding: 28px 0;
+        }
+        .distribucion {
+            display: grid;
+            grid-template-columns: minmax(300px, 28%) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        section {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 28px rgba(34, 64, 74, 0.10);
+            min-width: 0;
+        }
+
+        h2 {
+            color: var(--oscuro);
+            font-size: 1.3rem;
+            margin: 0 0 20px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin: 0 0 12px;
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-width: 0;
+            padding: 10px 12px;
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            background: white;
+            color: var(--texto);
+        }
+
+        input:focus,
+        select:focus {
+            outline: 3px solid rgba(100, 204, 197, 0.3);
+            border-color: var(--principal);
+        }
+
+        button {
+            padding: 10px 14px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: var(--principal);
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--oscuro);
+        }
+
+        button:focus-visible {
+            outline: 3px solid var(--turquesa);
+            outline-offset: 2px;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .secundario {
+            background: white;
+            border-color: var(--principal);
+            color: var(--principal);
+        }
+
+        .secundario:hover {
+            background: #eaf5f7;
+        }
+
+        .peligro {
+            background: #b42318;
+        }
+
+        .peligro:hover {
+            background: #8f1c13;
+        }
+
+        .acciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .filtros {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .filtros > div {
+            display: grid;
+            gap: 10px;
+            align-content: start;
+        }
+
+        .tabla-contenedor {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--borde);
+            vertical-align: middle;
+        }
+
+        th {
+            background: #eef7f8;
+            color: var(--oscuro);
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #f4fafb;
+        }
+
+        td button {
+            padding: 6px 9px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+
+        .estado {
+            display: inline-block;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: bold;
+        }
+
+        .pagado {
+            color: #145c37;
+            background: #def3e7;
+        }
+
+        .pendiente {
+            color: #785600;
+            background: #fff0c2;
+        }
+
+        #mensaje {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        #mensaje:empty {
+            display: none;
+        }
+
+        #mensaje.exito {
+            background: #e7f5ec;
+            color: #145c37;
+            border: 1px solid #a9d9bd;
+        }
+
+        #mensaje.error {
+            background: #fdecea;
+            color: #b42318;
+            border: 1px solid #efb5b0;
+        }
+
+        #mensaje.info {
+            background: #e8f4f8;
+            color: var(--oscuro);
+            border: 1px solid #b4dae5;
+        }
+
+        .texto-secundario {
+            color: #62747c;
+            font-size: 0.9rem;
+        }
+
+        .resumen-formulario {
+            grid-template-columns: 1fr 1fr auto;
+            align-items: end;
+            margin-bottom: 20px;
+        }
+
+        .resumen-formulario > div {
+            display: grid;
+            gap: 8px;
+        }
+
+        #totalMensual {
+            color: var(--oscuro);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #62747c;
+        }
+
+        @media (max-width: 1000px) {
+            .distribucion {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 28px 12px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 18px;
+            }
+
+            .filtros,
+            .resumen-formulario {
+                grid-template-columns: 1fr;
+            }
+        }#tablaGastos td:last-child {
+             white-space: nowrap;
+         }
+
+        #tablaGastos td button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 125px;
+            height: 40px;
+            padding: 5px;
+            margin: 2px;
+            white-space: normal;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div>
+        <h1>Control de Gastos Personales</h1>
+    </div>
+</header>
+
+<main>
+    <div id="mensaje" role="status" aria-live="polite"></div>
+
+    <div class="distribucion">
+        <div>
+            <section>
+                <h2 id="tituloCategoria">Registrar categoría</h2>
+
+                <form id="formCategoria">
+                    <input type="hidden" id="categoriaId">
+
+                    <label for="categoriaNombre">Nombre</label>
+                    <input
+                            id="categoriaNombre"
+                            type="text"
+                            maxlength="80"
+                            placeholder="Ejemplo: Alimentos"
+                            required
+                    >
+                    <label for="categoriaDescripcion">Descripción</label>
+                    <input
+                            id="categoriaDescripcion"
+                            type="text"
+                            maxlength="250"
+                            placeholder="Descripción de la categoría"
+                    >
+
+                    <div class="acciones">
+                        <button type="submit" id="guardarCategoria">
+                            Guardar categoría
+                        </button>
+
+                        <button
+                                type="button"
+                                id="limpiarCategoria"
+                                class="secundario">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section>
+                <h2 id="tituloGasto">Registrar gasto</h2>
+
+                <form id="formGasto">
+                    <input type="hidden" id="gastoId">
+
+                    <label for="gastoDescripcion">Descripción</label>
+                    <input
+                            id="gastoDescripcion"
+                            type="text"
+                            maxlength="160"
+                            placeholder="Ejemplo: Compra de comida rapida"
+                            required
+                    >
+
+                    <label for="gastoMonto">Monto en quetzales</label>
+                    <input
+                            id="gastoMonto"
+                            type="number"
+                            min="0.01"
+                            max="9999999999.99"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                    >
+
+                    <label for="gastoFecha">Fecha</label>
+                    <input id="gastoFecha" type="date" required>
+
+                    <label for="gastoCategoria">Categoría</label>
+                    <select id="gastoCategoria" required>
+                        <option value="">Selecciona una categoría</option>
+                    </select>
+
+                    <label for="gastoEstado">Estado</label>
+                    <select id="gastoEstado" required>
+                        <option value="PENDIENTE">Pendiente</option>
+                        <option value="PAGADO">Pagado</option>
+                    </select>
+                    <div class="acciones">
+                        <button type="submit" id="guardarGasto">Guardar gasto
+                        </button>
+
+                        <button
+                                type="button"
+                                id="limpiarGasto"
+                                class="secundario">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div>
+            <section>
+                <h2>Categorías registradas</h2>
+
+                <div class="tabla-contenedor">
+                    <table aria-label="Categorías registradas">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tablaCategorias">
+                        <tr>
+                            <td colspan="4">Cargando categorías...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2>Consultar gastos</h2>
+
+                <div class="filtros">
+                    <div>
+                        <label for="filtroCategoria">Por categoría</label>
+
+                        <select id="filtroCategoria">
+                            <option value="">Selecciona una categoría</option>
+                        </select>
+
+                        <button type="button" id="buscarCategoria">
+                            Buscar por categoría
+                        </button>
+                    </div>
+
+                    <form id="formRango">
+                        <label for="fechaInicio">Fecha inicial</label>
+                        <input id="fechaInicio" type="date" required>
+
+                        <label for="fechaFin">Fecha final</label>
+                        <input id="fechaFin" type="date" required>
+
+                        <button type="submit">Buscar por fechas</button>
+                    </form>
+                </div>
+
+                <div class="acciones">
+                    <button type="button" id="verTodos">
+                        Ver todos
+                    </button>
+
+                    <button
+                            type="button"
+                            id="verPendientes"
+                            class="secundario">
+                        Ver pendientes
+                    </button>
+                </div>
+                <div class="tabla-contenedor">
+                    <table aria-label="Gastos registrados">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Q Cantidad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="tablaGastos">
+                        <tr>
+                            <td colspan="7">Cargando gastos...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section>
+        <h2>Resumen mensual por categoría</h2>
+
+        <form id="formResumen" class="resumen-formulario">
+            <div>
+                <label for="resumenAnio">Año</label>
+                <input
+                        id="resumenAnio"
+                        type="number"
+                        min="1"
+                        max="9999"
+                        value="2026"
+                        required
+                >
+            </div>
+
+            <div>
+                <label for="resumenMes">Mes</label>
+                <select id="resumenMes" required>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10" selected>Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+
+            <button type="submit">Consultar resumen</button>
+        </form>
+        <p id="periodoResumen" class="texto-secundario"></p>
+
+        <div class="tabla-contenedor">
+            <table aria-label="Resumen mensual por categoría">
+                <thead>
+                <tr>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Cantidad de gastos</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaResumen">
+                <tr>
+                    <td colspan="3">Cargando resumen...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p id="totalMensual"></p>
+    </section>
+</main>
+<script>
+    "use strict";
+
+    const $ = id => document.getElementById(id);
+
+    const API_CATEGORIAS = "/api/categorias";
+    const API_GASTOS = "/api/gastos";
+
+    let categorias = [];
+    let gastos = [];
+
+    let filtroActivo = {
+        tipo: "todos"
+    };
+
+    let versionConsultaGastos = 0;
+    let versionConsultaResumen = 0;
+
+    const moneda = new Intl.NumberFormat("es-GT", {
+        style: "currency",
+        currency: "GTQ"
+    });
+
+    // Solicitudes a la API.
+    async function solicitar(url, metodo = "GET", datos) {
+        const opciones = {
+            method: metodo
+        };
+
+        if (datos !== undefined) {
+            opciones.headers = {
+                "Content-Type": "application/json"
+            };
+
+            opciones.body = JSON.stringify(datos);
+        }
+
+        let respuesta;
+
+        try {
+            respuesta = await fetch(url, opciones);
+        } catch {
+            throw new Error(
+                "No se pudo conectar con el servidor. "
+                + "Comprueba que Spring Boot esté ejecutándose."
+            );
+        }
+
+        const texto = await respuesta.text();
+        let contenido = null;
+
+        if (texto) {
+            try {
+                contenido = JSON.parse(texto);
+            } catch {
+                contenido = texto;
+            }
+        }
+
+        if (!respuesta.ok) {
+            const mensaje =
+                contenido?.mensaje ||
+                contenido?.message ||
+                `No se pudo completar la solicitud. Código ${respuesta.status}.`;
+
+            throw new Error(mensaje);
+        }
+
+        return contenido;
+    }
+
+    function mostrarMensaje(texto, tipo = "exito") {
+        $("mensaje").textContent = texto;
+        $("mensaje").className = tipo;
+    }
+
+    function escaparHTML(valor) {
+        return String(valor ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    async function ejecutar(operacion) {
+        try {
+            await operacion();
+        } catch (error) {
+            mostrarMensaje(error.message, "error");
+        }
+    }
+    async function cargarCategorias() {
+        categorias = await solicitar(API_CATEGORIAS);
+
+        $("tablaCategorias").innerHTML = categorias.length
+            ? categorias.map(categoria => `
+                <tr>
+                    <td>${escaparHTML(categoria.id)}</td>
+                    <td>${escaparHTML(categoria.nombre)}</td>
+                    <td>${escaparHTML(categoria.descripcion)}</td>
+                    <td>
+                        <button
+                            type="button"
+                            data-accion="editar"
+                            data-id="${escaparHTML(categoria.id)}">
+                            Editar
+                        </button>
+
+                        <button
+                            type="button"
+                            class="peligro"
+                            data-accion="eliminar"
+                            data-id="${escaparHTML(categoria.id)}">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            `).join("")
+            : `
+                <tr>
+                    <td colspan="4">No hay categorías registradas.</td>
+                </tr>
+            `;
+
+        actualizarOpciones("gastoCategoria");
+        actualizarOpciones("filtroCategoria");
+    }
+
+    function actualizarOpciones(idSelect) {
+        const select = $(idSelect);
+        const valorAnterior = select.value;
+
+        select.innerHTML = `
+            <option value="">Selecciona una categoría</option>
+            ${categorias.map(categoria => `
+                <option value="${escaparHTML(categoria.id)}">
+                    ${escaparHTML(categoria.nombre)}
+                </option>
+            `).join("")}
+        `;
+
+        if (categorias.some(
+            categoria => String(categoria.id) === valorAnterior
+        )) {
+            select.value = valorAnterior;
+        }
+    }
+
+    function limpiarFormularioCategoria() {
+        $("formCategoria").reset();
+        $("categoriaId").value = "";
+        $("tituloCategoria").textContent = "Registrar categoría";
+        $("guardarCategoria").textContent = "Guardar categoría";
+    }
+
+    function editarCategoria(id) {
+        const categoria = categorias.find(item => item.id === id);
+
+        if (!categoria) {
+            throw new Error("No se encontró la categoría seleccionada.");
+        }
+
+        $("categoriaId").value = categoria.id;
+        $("categoriaNombre").value = categoria.nombre;
+        $("categoriaDescripcion").value = categoria.descripcion ?? "";
+
+        $("tituloCategoria").textContent = "Modificar categoría";
+        $("guardarCategoria").textContent = "Actualizar categoría";
+
+        $("formCategoria").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        $("categoriaNombre").focus();
+    }
+
+    async function guardarCategoria() {
+        const id = $("categoriaId").value;
+        const nombre = $("categoriaNombre").value.trim();
+
+        if (!nombre) {
+            throw new Error("El nombre de la categoría es obligatorio.");
+        }
+
+        const datos = {
+            nombre,
+            descripcion: $("categoriaDescripcion").value.trim()
+        };
+
+        await solicitar(
+            id ? `${API_CATEGORIAS}/${id}` : API_CATEGORIAS,
+            id ? "PUT" : "POST",
+            datos
+        );
+
+        limpiarFormularioCategoria();
+
+        await refrescarDespuesDeCambio(
+            id
+                ? "Categoría actualizada correctamente."
+                : "Categoría registrada correctamente.",
+            true
+        );
+    }
+
+    async function eliminarCategoria(id) {
+        const categoria = categorias.find(item => item.id === id);
+
+        if (!categoria) {
+            throw new Error("No se encontró la categoría seleccionada.");
+        }
+
+        const confirmado = confirm(
+            `¿Deseas eliminar la categoría "${categoria.nombre}"?`
+        );
+
+        if (!confirmado) return;
+
+        await solicitar(`${API_CATEGORIAS}/${id}`, "DELETE");
+
+        if ($("categoriaId").value === String(id)) {
+            limpiarFormularioCategoria();
+        }
+
+        if (
+            filtroActivo.tipo === "categoria" &&
+            filtroActivo.id === String(id)
+        ) {
+            filtroActivo = { tipo: "todos" };
+        }
+
+        await refrescarDespuesDeCambio(
+            "Categoría eliminada correctamente.",
+            true
+        );
+    }
+
+    // ---------------- GASTOS ----------------
+
+    function obtenerConsultaGastos() {
+        switch (filtroActivo.tipo) {
+            case "pendientes":
+                return {
+                    url: `${API_GASTOS}/pendientes`,
+                    texto: "Gastos pendientes"
+                };
+
+            case "categoria": {
+                const categoria = categorias.find(
+                    item => String(item.id) === filtroActivo.id
+                );
+
+                return {
+                    url: `${API_GASTOS}/categoria/${filtroActivo.id}`,
+                    texto: `Categoría: ${categoria?.nombre ?? filtroActivo.id}`
+                };
+            }
+
+            case "fechas": {
+                const parametros = new URLSearchParams({
+                    inicio: filtroActivo.inicio,
+                    fin: filtroActivo.fin
+                });
+
+                return {
+                    url: `${API_GASTOS}/rango?${parametros}`,
+                    texto:
+                        `Desde ${filtroActivo.inicio} `
+                        + `hasta ${filtroActivo.fin}`
+                };
+            }
+
+            default:
+                return {
+                    url: API_GASTOS,
+                    texto: "Todos los gastos"
+                };
+        }
+    }
+
+    async function cargarGastos() {
+        const version = ++versionConsultaGastos;
+        const consulta = obtenerConsultaGastos();
+
+        const resultado = await solicitar(consulta.url);
+
+        if (version !== versionConsultaGastos) return;
+
+        gastos = resultado;
+
+        $("tablaGastos").innerHTML = gastos.length
+            ? gastos.map(gasto => {
+                const pagado = gasto.estado === "PAGADO";
+
+                return `
+                    <tr>
+                        <td>${escaparHTML(gasto.id)}</td>
+                        <td>${escaparHTML(gasto.descripcion)}</td>
+                        <td>${moneda.format(gasto.monto)}</td>
+                        <td>${escaparHTML(gasto.fecha.split("-").reverse().join("/"))}</td>
+                        <td>${escaparHTML(gasto.categoriaNombre)}</td>
+
+                        <td>
+                            <span class="estado ${pagado ? "pagado" : "pendiente"}">
+                                ${escaparHTML(gasto.estado)}
+                            </span>
+                        </td>
+
+                        <td>
+                            <button
+                                type="button"
+                                data-accion="editar"
+                                data-id="${escaparHTML(gasto.id)}">
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="secundario"
+                                data-accion="estado"
+                                data-id="${escaparHTML(gasto.id)}">
+                                ${pagado ? "Marcar pendiente" : "Marcar pagado"}
+                            </button>
+
+                            <button
+                                type="button"
+                                class="peligro"
+                                data-accion="eliminar"
+                                data-id="${escaparHTML(gasto.id)}">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join("")
+            : `
+                <tr>
+                    <td colspan="7">No hay gastos para esta consulta.</td>
+                </tr>
+            `;
+    }
+
+    function limpiarFormularioGasto() {
+        $("formGasto").reset();
+        $("gastoId").value = "";
+        $("tituloGasto").textContent = "Registrar gasto";
+        $("guardarGasto").textContent = "Guardar gasto";
+    }
+
+    function editarGasto(id) {
+        const gasto = gastos.find(item => item.id === id);
+
+        if (!gasto) {
+            throw new Error("No se encontró el gasto seleccionado.");
+        }
+
+        $("gastoId").value = gasto.id;
+        $("gastoDescripcion").value = gasto.descripcion;
+        $("gastoMonto").value = gasto.monto;
+        $("gastoFecha").value = gasto.fecha;
+        $("gastoCategoria").value = gasto.categoriaId;
+        $("gastoEstado").value = gasto.estado;
+
+        $("tituloGasto").textContent = "Modificar gasto";
+        $("guardarGasto").textContent = "Actualizar gasto";
+
+        $("formGasto").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        $("gastoDescripcion").focus();
+    }
+
+    async function guardarGasto() {
+        const id = $("gastoId").value;
+        const descripcion = $("gastoDescripcion").value.trim();
+        const montoTexto = $("gastoMonto").value;
+        const monto = Number(montoTexto);
+        const categoriaId = Number($("gastoCategoria").value);
+        const fecha = $("gastoFecha").value;
+        const estado = $("gastoEstado").value;
+
+        if (!descripcion) {
+            throw new Error("La descripción es obligatoria.");
+        }
+
+        if (!Number.isFinite(monto) || monto <= 0) {
+            throw new Error("El monto debe ser mayor que cero.");
+        }
+
+        if (!Number.isInteger(categoriaId) || categoriaId <= 0) {
+            throw new Error("Selecciona una categoría.");
+        }
+
+        if (!fecha) {
+            throw new Error("La fecha es obligatoria.");
+        }
+
+        if (!["PAGADO", "PENDIENTE"].includes(estado)) {
+            throw new Error("El estado no es válido.");
+        }
+
+        const datos = {
+            descripcion,
+            monto: montoTexto,
+            fecha,
+            estado,
+            categoriaId
+        };
+
+        await solicitar(
+            id ? `${API_GASTOS}/${id}` : API_GASTOS,
+            id ? "PUT" : "POST",
+            datos
+        );
+
+        limpiarFormularioGasto();
+        filtroActivo = { tipo: "todos" };
+
+        await refrescarDespuesDeCambio(
+            id
+                ? "Gasto actualizado correctamente."
+                : "Gasto registrado correctamente."
+        );
+    }
+
+    async function eliminarGasto(id) {
+        const gasto = gastos.find(item => item.id === id);
+
+        if (!gasto) {
+            throw new Error("No se encontró el gasto seleccionado.");
+        }
+
+        const confirmado = confirm(
+            `¿Deseas eliminar el gasto "${gasto.descripcion}"?`
+        );
+
+        if (!confirmado) return;
+
+        await solicitar(`${API_GASTOS}/${id}`, "DELETE");
+
+        if ($("gastoId").value === String(id)) {
+            limpiarFormularioGasto();
+        }
+
+        await refrescarDespuesDeCambio(
+            "Gasto eliminado correctamente."
+        );
+    }
+
+    async function cambiarEstado(id) {
+        const gasto = gastos.find(item => item.id === id);
+
+        if (!gasto) {
+            throw new Error("No se encontró el gasto seleccionado.");
+        }
+
+        const estado =
+            gasto.estado === "PAGADO" ? "PENDIENTE" : "PAGADO";
+
+        await solicitar(
+            `${API_GASTOS}/${id}/estado`,
+            "PATCH",
+            { estado }
+        );
+
+        if ($("gastoId").value === String(id)) {
+            $("gastoEstado").value = estado;
+        }
+
+        await refrescarDespuesDeCambio(
+            `Estado actualizado a ${estado}.`
+        );
+    }
+
+    async function mostrarTodos() {
+        filtroActivo = { tipo: "todos" };
+        await cargarGastos();
+    }
+
+    async function mostrarPendientes() {
+        filtroActivo = { tipo: "pendientes" };
+        await cargarGastos();
+    }
+
+    async function filtrarCategoria() {
+        const id = $("filtroCategoria").value;
+
+        if (!id) {
+            throw new Error("Selecciona una categoría para consultar.");
+        }
+
+        filtroActivo = {
+            tipo: "categoria",
+            id
+        };
+
+        await cargarGastos();
+    }
+
+    async function filtrarFechas() {
+        const inicio = $("fechaInicio").value;
+        const fin = $("fechaFin").value;
+
+        if (!inicio || !fin) {
+            throw new Error("Selecciona ambas fechas.");
+        }
+
+        if (inicio > fin) {
+            throw new Error(
+                "La fecha inicial no puede ser posterior a la fecha final."
+            );
+        }
+
+        filtroActivo = {
+            tipo: "fechas",
+            inicio,
+            fin
+        };
+
+        await cargarGastos();
+    }
+
+    async function cargarResumen() {
+        const anio = Number($("resumenAnio").value);
+        const mes = Number($("resumenMes").value);
+
+        if (!Number.isInteger(anio) || anio < 1 || anio > 9999) {
+            throw new Error("El año debe estar entre 1 y 9999.");
+        }
+
+        if (!Number.isInteger(mes) || mes < 1 || mes > 12) {
+            throw new Error("El mes debe estar entre 1 y 12.");
+        }
+
+        const version = ++versionConsultaResumen;
+        const parametros = new URLSearchParams({ anio, mes });
+
+        const resumen = await solicitar(
+            `${API_GASTOS}/resumen-mensual?${parametros}`
+        );
+
+        if (version !== versionConsultaResumen) return;
+
+        $("periodoResumen").textContent =
+            `Resultado correspondiente al mes ${mes} del año ${anio}.`;
+
+        $("tablaResumen").innerHTML = resumen.length
+            ? resumen.map(item => `
+                <tr>
+                    <td>${escaparHTML(item.categoriaNombre)}</td>
+                    <td>${escaparHTML(item.cantidad)}</td>
+                    <td>${moneda.format(item.total)}</td>
+                </tr>
+            `).join("")
+            : `
+                <tr>
+                    <td colspan="3">No hay gastos en este período.</td>
+                </tr>
+            `;
+
+        const totalCentavos = resumen.reduce(
+            (acumulado, item) =>
+                acumulado + Math.round(Number(item.total) * 100),
+            0
+        );
+
+        $("totalMensual").textContent =
+            `Total del mes: ${moneda.format(totalCentavos / 100)}`;
+    }
+
+    async function refrescarDespuesDeCambio(
+        mensajeExito,
+        incluirCategorias = false
+    ) {
+        const errores = [];
+
+        if (incluirCategorias) {
+            try {
+                await cargarCategorias();
+            } catch (error) {
+                errores.push(error.message);
+            }
+        }
+
+        try {
+            await cargarGastos();
+        } catch (error) {
+            errores.push(error.message);
+        }
+
+        try {
+            await cargarResumen();
+        } catch (error) {
+            errores.push(error.message);
+        }
+
+        if (errores.length) {
+            mostrarMensaje(
+                mensajeExito
+                + " No se pudieron actualizar todas las vistas: "
+                + errores.join(" "),
+                "info"
+            );
+        } else {
+            mostrarMensaje(mensajeExito);
+        }
+    }
+
+
+    $("formCategoria").addEventListener("submit", evento => {
+        evento.preventDefault();
+        ejecutar(guardarCategoria);
+    });
+
+    $("limpiarCategoria").addEventListener(
+        "click",
+        limpiarFormularioCategoria
+    );
+
+    $("formGasto").addEventListener("submit", evento => {
+        evento.preventDefault();
+        ejecutar(guardarGasto);
+    });
+
+    $("limpiarGasto").addEventListener(
+        "click",
+        limpiarFormularioGasto
+    );
+
+    $("verTodos").addEventListener("click", () => {
+        ejecutar(mostrarTodos);
+    });
+
+    $("verPendientes").addEventListener("click", () => {
+        ejecutar(mostrarPendientes);
+    });
+
+    $("buscarCategoria").addEventListener("click", () => {
+        ejecutar(filtrarCategoria);
+    });
+
+    $("formRango").addEventListener("submit", evento => {
+        evento.preventDefault();
+        ejecutar(filtrarFechas);
+    });
+
+    $("formResumen").addEventListener("submit", evento => {
+        evento.preventDefault();
+        ejecutar(cargarResumen);
+    });
+
+    $("tablaCategorias").addEventListener("click", evento => {
+        const boton = evento.target.closest("button[data-accion]");
+
+        if (!boton) return;
+
+        const id = Number(boton.dataset.id);
+
+        ejecutar(async () => {
+            if (boton.dataset.accion === "editar") {
+                editarCategoria(id);
+            } else {
+                await eliminarCategoria(id);
+            }
+        });
+    });
+
+    $("tablaGastos").addEventListener("click", evento => {
+        const boton = evento.target.closest("button[data-accion]");
+
+        if (!boton) return;
+
+        const id = Number(boton.dataset.id);
+
+        ejecutar(async () => {
+            switch (boton.dataset.accion) {
+                case "editar":
+                    editarGasto(id);
+                    break;
+
+                case "eliminar":
+                    await eliminarGasto(id);
+                    break;
+
+                case "estado":
+                    await cambiarEstado(id);
+                    break;
+            }
+        });
+    });
+
+    // ---------------- CARGA INICIAL ----------------
+
+    async function iniciar() {
+        const errores = [];
+
+        try {
+            await cargarCategorias();
+        } catch (error) {
+            $("tablaCategorias").innerHTML = `
+                <tr>
+                    <td colspan="4">No se pudieron cargar las categorías.</td>
+                </tr>
+            `;
+            errores.push(error.message);
+        }
+
+        try {
+            await cargarGastos();
+        } catch (error) {
+            $("tablaGastos").innerHTML = `
+                <tr>
+                    <td colspan="7">No se pudieron cargar los gastos.</td>
+                </tr>
+            `;
+            errores.push(error.message);
+        }
+
+        try {
+            await cargarResumen();
+        } catch (error) {
+            $("tablaResumen").innerHTML = `
+                <tr>
+                    <td colspan="3">No se pudo cargar el resumen.</td>
+                </tr>
+            `;
+            errores.push(error.message);
+        }
+
+        if (errores.length) {
+            mostrarMensaje(
+                [...new Set(errores)].join(" "),
+                "error"
+            );
+        }
+    }
+
+    ejecutar(iniciar);
+</script>
+</body>
+</html>
