@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d23b928c-e532-45f3-b18b-7358cf561add" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/Evidencias/Doc2.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/Evidencias/~$Doc2.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlGastosPersonales/database/gastos.sql" beforeDir="false" afterPath="$PROJECT_DIR$/controlGastosPersonales/database/scrips.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
